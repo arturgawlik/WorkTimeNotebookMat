@@ -1,10 +1,18 @@
 :host {
-    height: 100vh;
+    height: 70vh;
     display: grid;
-    justify-items: center;
     align-items: center;
+    justify-content: space-around;
 }
 
 mat-card {
-    width: 700px;
+    max-width: 600px;
+    margin: 0 10px;
 }
+
+
+form {
+    display: grid;
+    width: auto;
+}
+
