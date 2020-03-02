@@ -9,12 +9,16 @@ import { UnauthorizedShellComponent } from './components/unauthorized-shell/unau
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { FooterComponent } from './components/footer/footer.component';
+import { TopbarComponent } from './components/topbar/topbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthorizedShellComponent,
-    UnauthorizedShellComponent
+    UnauthorizedShellComponent,
+    FooterComponent,
+    TopbarComponent
   ],
   imports: [
     BrowserModule,
