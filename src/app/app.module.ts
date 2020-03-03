@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FooterComponent } from './components/footer/footer.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { MatButtonModule } from '@angular/material/button';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
     AuthorizedShellComponent,
     UnauthorizedShellComponent,
     FooterComponent,
-    TopbarComponent
+    TopbarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
