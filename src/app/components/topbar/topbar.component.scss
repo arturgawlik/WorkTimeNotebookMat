@@ -1,7 +1,9 @@
-@import '~@angular/material/theming';
 
 :host {
     text-align: center;
     text-transform: uppercase;
-    // background-color: mat-color($red);
+}
+
+h2 {
+    padding: 10px;
 }

@@ -2,15 +2,17 @@
     height: 100vh;
     display: grid;
     // grid-template-rows: 3fr 20fr 1fr;
-    grid-template-rows: repeat(20, 1fr);
+    grid-template-rows: auto 1fr auto;
+    gap: 10px;
 }
 
 main {
-    // height: 100vh;
     display: grid;
     align-items: center;
     justify-content: space-around;
-    grid-row-start: 5;
+    // height: 0;
+    // grid-row-start: 5 /;
+    // overflow-y: scroll;
 }
 
 mat-card {
@@ -29,12 +31,23 @@ form {
     grid-template-columns: minmax(auto, 100vw);
 }
 
+button {
+    margin: 0 !important;
+}
+
+mat-card-actions, .buttons {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
 app-topbar {
-    grid-row-start: 1;
+    // grid-row-start: 1;
     // grid-row: 1/3;
 }
 
 app-footer {
-    grid-row-start: -2;
+    // grid-row: -1;
 }
 
