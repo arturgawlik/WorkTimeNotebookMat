@@ -6,11 +6,13 @@
         </mat-card-header>
         <mat-card-content>
             <form (ngSubmit)="loginFormSubmit()" [formGroup]="loginForm">
-                <mat-form-field>
-                    <input matInput type="email" placeholder="Email" formControlName="login">
+                <mat-form-field appearance="standard">
+                    <mat-label>Email</mat-label>
+                    <input matInput required type="email" placeholder="" formControlName="email">
                 </mat-form-field>
-                <mat-form-field>
-                    <input matInput type="password" placeholder="Password" formControlName="password">
+                <mat-form-field appearance="standard">
+                    <mat-label>Password</mat-label>
+                    <input matInput required type="password" placeholder="" formControlName="password">
                 </mat-form-field>
             </form>
             <div class="buttons">
