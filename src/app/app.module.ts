@@ -19,6 +19,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BaseInterceptor } from './interceptors/base.interceptor';
+import { FetchingService } from './services/fetching.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     AngularFireAuthModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true },
+    FetchingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

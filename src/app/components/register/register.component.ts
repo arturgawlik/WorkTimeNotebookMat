@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { passwordsEquality } from 'src/app/utils/validators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { FetchingService } from 'src/app/services/fetching.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private auth: AngularFireAuth, private router: Router) {
+  constructor(private fb: FormBuilder, private auth: AngularFireAuth, private router: Router, private fetching: FetchingService) {
   }
 
   ngOnInit() {
@@ -33,13 +34,16 @@ export class RegisterComponent implements OnInit {
 
   registerFormSubmit() {
     if (this.registerForm.valid) {
+      this.fetching.show();
       this.auth.createUserWithEmailAndPassword(this.registerForm.value.email, this.registerForm.value.passwords.password)
       .then(r => {
         console.log(r);
         this.router.navigate(['/']);
+        this.fetching.hide();
       })
       .catch(err => {
         console.log(err);
+        this.fetching.hide();
       })
     } else {
       this.registerForm.markAllAsTouched();

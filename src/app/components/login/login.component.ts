@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { FetchingService } from 'src/app/services/fetching.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, public auth: AngularFireAuth, private router: Router) {
+  constructor(private fb: FormBuilder, public auth: AngularFireAuth, private router: Router, private fetching: FetchingService) {
   }
 
   ngOnInit() {
@@ -29,13 +30,16 @@ export class LoginComponent implements OnInit {
 
   loginFormSubmit() {
     if (this.loginForm.valid) {
+      this.fetching.show();
       this.auth.signInWithEmailAndPassword(this.loginForm.value.email, this.loginForm.value.password)
       .then(r => {
         console.log(r);
         this.router.navigate(['/']);
+        this.fetching.hide();
       })
       .catch(err => {
         console.log(err);
+        this.fetching.hide();
       });
     } else {
       this.loginForm.markAllAsTouched();
