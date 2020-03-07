@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private auth: AngularFireAuth) {
+  constructor(private fb: FormBuilder, public auth: AngularFireAuth, private router: Router) {
   }
 
   ngOnInit() {
@@ -29,7 +29,14 @@ export class LoginComponent implements OnInit {
 
   loginFormSubmit() {
     if (this.loginForm.valid) {
-      this.auth.signInWithEmailAndPassword(this.loginForm.value.email, this.loginForm.value.password);
+      this.auth.signInWithEmailAndPassword(this.loginForm.value.email, this.loginForm.value.password)
+      .then(r => {
+        console.log(r);
+        this.router.navigate(['/']);
+      })
+      .catch(err => {
+        console.log(err);
+      });
     } else {
       this.loginForm.markAllAsTouched();
     }

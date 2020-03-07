@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authorized-shell',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthorizedShellComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AngularFireAuth, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    this.auth.signOut()
+    .then(r => {
+      console.log(r);
+      this.router.navigate(['/login']);
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
 }

@@ -4,20 +4,27 @@ import { UnauthorizedShellComponent } from './components/unauthorized-shell/unau
 import { AuthorizedShellComponent } from './components/authorized-shell/authorized-shell.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AuthorizedGuard } from './guards/authorized.guard';
+import { UnauthorizedGuard } from './guards/unauthorized.guard';
 
 
 const routes: Routes = [
+  { path: '', component: AuthorizedShellComponent, canActivate: [AuthorizedGuard] },
   {
     path: '', component: UnauthorizedShellComponent, children: [
-      { path: '', component: LoginComponent },
+      { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent }
-    ]
+    ],
+    canActivate: [UnauthorizedGuard]
   },
-  { path: '', component: AuthorizedShellComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes),
+  ],
+  exports: [
+    RouterModule
+  ],
 })
 export class AppRoutingModule { }
