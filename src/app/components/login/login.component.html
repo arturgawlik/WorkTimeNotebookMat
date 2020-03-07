@@ -9,17 +9,19 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Email</mat-label>
                     <input matInput required type="email" placeholder="" formControlName="email">
+                    <mat-error *ngIf="loginForm.get('email').hasError('required')">Field email is required!</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Password</mat-label>
                     <input matInput required type="password" placeholder="" formControlName="password">
+                    <mat-error *ngIf="loginForm.get('password').hasError('required')">Field password is required!
+                    </mat-error>
                 </mat-form-field>
             </form>
-            <div class="buttons">
-                <button mat-stroked-button color="primary" (click)="loginBtnClick()">Login</button>
-                <button mat-stroked-button color="accent">or add new account</button>
-            </div>
         </mat-card-content>
+        <mat-card-actions>
+            <button mat-stroked-button color="primary" (click)="loginBtnClick()">Sign in</button>
+            <button mat-stroked-button color="accent" routerLink="/register">or add new account</button>
     </mat-card>
 </main>
 <app-footer></app-footer>
