@@ -13,7 +13,6 @@ import { TopbarComponent } from './components/topbar/topbar.component';
 import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { RegisterComponent } from './components/register/register.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -22,6 +21,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BaseInterceptor } from './interceptors/base.interceptor';
 import { FetchingService } from './services/fetching.service';
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -45,10 +45,12 @@ import { FetchingService } from './services/fetching.service';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    MatSnackBarModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true },
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
     FetchingService
   ],
   bootstrap: [AppComponent]

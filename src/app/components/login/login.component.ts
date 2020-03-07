@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { FetchingService } from 'src/app/services/fetching.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,9 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, public auth: AngularFireAuth, private router: Router, private fetching: FetchingService) {
+  constructor(private fb: FormBuilder, private auth: AngularFireAuth, 
+    private router: Router, private fetching: FetchingService,
+    private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -40,6 +43,7 @@ export class LoginComponent implements OnInit {
       .catch(err => {
         console.log(err);
         this.fetching.hide();
+        this.snackBar.open('Wrong email or password!');
       });
     } else {
       this.loginForm.markAllAsTouched();

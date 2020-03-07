@@ -4,6 +4,7 @@ import { passwordsEquality } from 'src/app/utils/validators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { FetchingService } from 'src/app/services/fetching.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,9 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private auth: AngularFireAuth, private router: Router, private fetching: FetchingService) {
+  constructor(private fb: FormBuilder, private auth: AngularFireAuth,
+    private router: Router, private fetching: FetchingService,
+    private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -44,6 +47,7 @@ export class RegisterComponent implements OnInit {
       .catch(err => {
         console.log(err);
         this.fetching.hide();
+        this.snackBar.open('Something goes wrong... :(');
       })
     } else {
       this.registerForm.markAllAsTouched();

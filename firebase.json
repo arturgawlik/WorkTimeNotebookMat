@@ -1,10 +1,19 @@
 {
-  "hosting": {
-    "public": "dist/WorkTimeNotebookMat",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  }
+  "hosting": [
+    {
+      "target": "WorkTimeNotebookMat",
+      "public": "dist/WorkTimeNotebookMat",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
 }

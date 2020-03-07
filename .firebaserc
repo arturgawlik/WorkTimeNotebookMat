@@ -1,7 +1,4 @@
 {
-  "projects": {
-    "default": "worktimenotebookmat"
-  },
   "targets": {
     "worktimenotebookmat": {
       "hosting": {
