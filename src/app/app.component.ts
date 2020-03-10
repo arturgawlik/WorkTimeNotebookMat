@@ -5,7 +5,7 @@ import { FetchingService } from './services/fetching.service';
   selector: 'app-root',
   styleUrls: ['./app.component.scss'],
   template: `
-    <div *ngIf="isFetching" style="position: absolute; width: 100%">
+    <div *ngIf="isFetching">
       <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
     </div>
     <router-outlet></router-outlet>
@@ -18,7 +18,7 @@ export class AppComponent implements AfterViewInit {
   constructor(private fetching: FetchingService) {
     fetching.isLoading.subscribe(v => {
       if(v) {
-        this.isFetching = v
+        this.isFetching = v;
       } else {
         setTimeout(() => this.isFetching = v, 500);
       }
