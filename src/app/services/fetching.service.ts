@@ -6,11 +6,16 @@ import { Subject } from 'rxjs';
 })
 export class FetchingService {
 
-  isLoading = new Subject<boolean>();
-    show() {
-        this.isLoading.next(true);
-    }
-    hide() {
-        this.isLoading.next(false);
-    }
+  _isLoading = new Subject<boolean>();
+  
+  get isLoading(): Subject<boolean> {
+    return this._isLoading;
+  }
+
+  show() {
+    this._isLoading.next(true);
+  }
+  hide() {
+    this._isLoading.next(false);
+  }
 }
