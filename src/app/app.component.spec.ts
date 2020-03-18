@@ -11,8 +11,11 @@ describe('AppComponent', () => {
 
   beforeEach(async(() => {
 
-    const fetchingServiceSpy = jasmine.createSpyObj('FetchingService', [], ['isLoading']);
-    isLoadingSpy = fetchingServiceSpy.isLoading.and.returnValue(of(false));
+    // // const fetchingServiceSpy = jasmine.createSpyObj('FetchingService', [], ['isLoading']);
+    // const fetchingServiceSpy = jasmine.createSpyObj('FetchingService', ['hide'], { 
+    //   isLoading: of(false)
+    // });
+    // // isLoadingSpy = fetchingServiceSpy.isLoading.and.returnValue(of(false));
 
     TestBed.configureTestingModule({
       imports: [
@@ -22,22 +25,21 @@ describe('AppComponent', () => {
         AppComponent
       ],
       providers: [
-        { provide: FetchingService, useValue: fetchingServiceSpy }
+        FetchingService 
       ]
     }).compileComponents();
   }));
+
+  it('test test', () => {
+    const service = TestBed.get(FetchingService);
+
+    expect(service.isLoading).toBeTruthy();
+  });
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('WorkTimeNotebookMat app is running!');
   });
 
   it('should have isFetching flag as true', () => {
@@ -54,10 +56,7 @@ describe('AppComponent', () => {
 
   it('should hide progress loader after ngAfterViewInit call + 500ms', fakeAsync(() => {
     
-    const q$ = cold('x|', {x: false});
-    isLoadingSpy.and.returnValue(q$);
     const fixture = TestBed.createComponent(AppComponent);
-
     fixture.detectChanges();
 
     // initialy progress bar should be visible
@@ -65,8 +64,6 @@ describe('AppComponent', () => {
     expect(matProcessBar).toBeTruthy();
     
     // then ngAfterViewInit call to hide progress bar
-    getTestScheduler().flush();
-    // after it there is setTimeout(..., 500);
     tick(500);
 
     fixture.detectChanges();
