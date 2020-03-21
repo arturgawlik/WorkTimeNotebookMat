@@ -2,18 +2,21 @@ import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { cold, getTestScheduler } from 'jasmine-marbles';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { FetchingService } from './services/fetching.service';
 
+// TODO: For now I'm using real FetchingService instead of some spy - this should be changed.
 describe('AppComponent', () => {
 
   beforeEach(async(() => {
 
     // // const fetchingServiceSpy = jasmine.createSpyObj('FetchingService', [], ['isLoading']);
-    // const fetchingServiceSpy = jasmine.createSpyObj('FetchingService', ['hide'], { 
-    //   isLoading: of(false)
+    // const fetchingServiceSpy = jasmine.createSpyObj('FetchingService', ['show', 'hide'], { 
+    //   isLoading: new Subject<boolean>()
     // });
-    // // isLoadingSpy = fetchingServiceSpy.isLoading.and.returnValue(of(false));
+    // fetchingServiceSpy.show.and.callFake(() => this.isLoading.next(true));
+    // fetchingServiceSpy.hide.and.callFake(() => this.isLoading.next(false));
+
 
     TestBed.configureTestingModule({
       imports: [
@@ -24,6 +27,7 @@ describe('AppComponent', () => {
       ],
       providers: [
         FetchingService 
+        // { provide: FetchingService, useValue: fetchingServiceSpy }
       ]
     }).compileComponents();
   }));
@@ -46,8 +50,13 @@ describe('AppComponent', () => {
     expect(matProcessBar).toBeTruthy();
   });
 
+  it('should have router-outlet element', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('router-outlet')).toBeTruthy();
+  });
+
   it('should hide progress loader after ngAfterViewInit call + 500ms', fakeAsync(() => {
-    
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
 
@@ -100,6 +109,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     tick(500);
+    fixture.componentInstance.isFetching = false;
 
     const fetchingService = TestBed.get(FetchingService);
     fetchingService.show();

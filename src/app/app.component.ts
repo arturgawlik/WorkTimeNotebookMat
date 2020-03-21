@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { FetchingService } from './services/fetching.service';
 
 @Component({
@@ -11,12 +11,15 @@ import { FetchingService } from './services/fetching.service';
     <router-outlet></router-outlet>
   `
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit {
   
   isFetching = true;
 
   constructor(private fetching: FetchingService) {
-    fetching.isLoading.subscribe(v => {
+  }
+
+  ngOnInit() {
+    this.fetching.isLoading.subscribe(v => {
       if(v) {
         this.isFetching = v;
       } else {
