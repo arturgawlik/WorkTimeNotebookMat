@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { cold, getTestScheduler } from 'jasmine-marbles';
 import { of, Subject } from 'rxjs';
-import { FetchingService } from './services/fetching.service';
+import { FetchingService } from './services/fetching/fetching.service';
 
 // TODO: For now I'm using real FetchingService instead of some spy - this should be changed.
 describe('AppComponent', () => {

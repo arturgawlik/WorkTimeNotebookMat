@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { FetchingService } from 'src/app/services/fetching.service';
+import { FetchingService } from 'src/app/services/fetching/fetching.service';
 
 @Component({
   selector: 'app-authorized-shell',

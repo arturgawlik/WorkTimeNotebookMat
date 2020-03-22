@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 })
 export class FetchingService {
 
-  _isLoading = new Subject<boolean>();
+  private _isLoading = new Subject<boolean>();
   
   get isLoading(): Subject<boolean> {
     return this._isLoading;

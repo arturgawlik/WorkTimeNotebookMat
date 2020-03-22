@@ -20,7 +20,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BaseInterceptor } from './interceptors/base.interceptor';
-import { FetchingService } from './services/fetching.service';
+import { FetchingService } from './services/fetching/fetching.service';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
 @NgModule({

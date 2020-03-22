@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
-import { FetchingService } from './services/fetching.service';
+import { FetchingService } from './services/fetching/fetching.service';
 
 @Component({
   selector: 'app-root',

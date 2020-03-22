@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { FetchingService } from 'src/app/services/fetching.service';
+import { FetchingService } from 'src/app/services/fetching/fetching.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]]
     });
   }
-
 
   loginFormSubmit() {
     if (this.loginForm.valid) {
