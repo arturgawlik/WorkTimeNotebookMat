@@ -68,10 +68,19 @@ describe('LoginComponent', () => {
     expect(registerBtn).toBeTruthy('view should have login button');
   });
 
+  it('initialy errors are no visible', () => {
+    fixture.detectChanges();
+    const elem = fixture.debugElement.query(By.css('mat-error'));
+    expect(elem).toBeFalsy();
+  });
+
   it('should show errors when login btn was clicked without pass email and password', () => {
+    fixture.detectChanges();
     const btn = fixture.debugElement.query(By.css('#sign-in-btn'));
     btn.triggerEventHandler('click', null);
-
+    fixture.detectChanges();
+    const elem = fixture.debugElement.query(By.css('mat-error'));
+    expect(elem).toBeTruthy();
   });
 
 });
