@@ -68,7 +68,7 @@ describe('LoginComponent', () => {
     expect(registerBtn).toBeTruthy('view should have login button');
   });
 
-  it('initialy errors are no visible', () => {
+  it('initialy errors should not be visible', () => {
     fixture.detectChanges();
     const elem = fixture.debugElement.query(By.css('mat-error'));
     expect(elem).toBeFalsy();
@@ -79,8 +79,22 @@ describe('LoginComponent', () => {
     const btn = fixture.debugElement.query(By.css('#sign-in-btn'));
     btn.triggerEventHandler('click', null);
     fixture.detectChanges();
-    const elem = fixture.debugElement.query(By.css('mat-error'));
+    const elem = fixture.debugElement.queryAll(By.css('mat-error'));
     expect(elem).toBeTruthy();
+    expect(elem[0].nativeElement.textContent).toBe('Field email is required!');
+    expect(elem[1].nativeElement.textContent).toBe('Field password is required!');
+  });
+
+  it('should show password required communicat', () => {
+    fixture.detectChanges();
+    const input = fixture.debugElement.query(By.css('input[formControlName="email"]'));
+    input.nativeElement.value = 'test@test.test';
+    input.triggerEventHandler('input', { target: { value: 'test@test.test' }});
+    const btn = fixture.debugElement.query(By.css('#sign-in-btn'));
+    btn.triggerEventHandler('click', null);
+    fixture.detectChanges();
+    const errorCommunicat = fixture.debugElement.query(By.css('mat-error'));
+    expect(errorCommunicat.nativeElement.textContent).toBe('Field password is required!');
   });
 
 });
