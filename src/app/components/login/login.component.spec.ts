@@ -97,4 +97,27 @@ describe('LoginComponent', () => {
     expect(errorCommunicat.nativeElement.textContent).toBe('Field password is required!');
   });
 
+  it('should show email required communicat', () => {
+    fixture.detectChanges();
+    const input = fixture.debugElement.query(By.css('input[formControlName="password"]'));
+    input.nativeElement.value = 'testtesttest';
+    input.triggerEventHandler('input', { target: { value: 'testtesttest' }});
+    const btn = fixture.debugElement.query(By.css('#sign-in-btn'));
+    btn.triggerEventHandler('click', null);
+    fixture.detectChanges();
+    const errorCommunicat = fixture.debugElement.query(By.css('mat-error'));
+    expect(errorCommunicat.nativeElement.textContent).toBe('Field email is required!');
+  });
+
+  it('should not show required messages when all inputs are filled', () =>{
+    fixture.detectChanges();
+    const input1 = fixture.debugElement.query(By.css('input[formControlName="email"]'));
+    const input2 = fixture.debugElement.query(By.css('input[formControlName="password"]'));
+    input1.nativeElement.value = 'test@test.test';
+    input2.nativeElement.value = 'testtesttest';
+    input1.triggerEventHandler('input', { target: { value: 'test@test.test' }});
+    input2.triggerEventHandler('input', { target: { value: 'testtesttest' }});
+
+  });
+
 });
