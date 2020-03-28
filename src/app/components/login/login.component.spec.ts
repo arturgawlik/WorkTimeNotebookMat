@@ -180,7 +180,6 @@ describe('LoginComponent', () => {
         expect(matSnakBarSpy.open).toHaveBeenCalled();
     }));
 
-
     it('should call FetchingService.show and then FetchingService.hide when auth resolveed', fakeAsync(() => {
         fixture.detectChanges();
         component.loginForm.get('email').setValue('test@test.test');
@@ -201,5 +200,11 @@ describe('LoginComponent', () => {
         tick();
         expect(fetchingServiceSpy.hide).toHaveBeenCalled();
     }));
+
+    it('should has register new account btn', () => {
+        fixture.detectChanges();
+        const btn = fixture.debugElement.query(By.css('#register-new-account-btn'));
+        expect(btn.attributes.routerLink).toBe('/register');
+    });
 
 });

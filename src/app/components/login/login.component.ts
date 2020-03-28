@@ -35,12 +35,10 @@ export class LoginComponent implements OnInit {
       this.fetching.show();
       this.auth.signInWithEmailAndPassword(this.loginForm.value.email, this.loginForm.value.password)
       .then(r => {
-        console.log(r);
         this.router.navigate(['/']);
         this.fetching.hide();
       })
       .catch(err => {
-        console.log(err);
         this.fetching.hide();
         this.snackBar.open('Wrong email or password!');
       });
