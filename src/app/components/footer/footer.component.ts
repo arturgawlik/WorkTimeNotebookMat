@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  styleUrls: ['./footer.component.scss'],
+  template: `
+    <div class="app-footer-theme">🐱 created by hufcio 🐱</div>
+  `
 })
 export class FooterComponent implements OnInit {
 

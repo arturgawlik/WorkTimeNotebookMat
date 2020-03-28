@@ -40,12 +40,10 @@ export class RegisterComponent implements OnInit {
       this.fetching.show();
       this.auth.createUserWithEmailAndPassword(this.registerForm.value.email, this.registerForm.value.passwords.password)
         .then(r => {
-          console.log(r);
           this.router.navigate(['/']);
           this.fetching.hide();
         })
         .catch(err => {
-          console.log(err);
           this.fetching.hide();
           this.snackBar.open('Something goes wrong... :(');
         })

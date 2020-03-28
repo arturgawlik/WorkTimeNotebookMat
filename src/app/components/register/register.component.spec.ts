@@ -78,6 +78,11 @@ describe('RegisterComponent', () => {
         expect(goToLoginBtn).toBeTruthy();
     });
 
+    it('login btn should have routerLink to login path', () => {
+        const goToLoginBtn = fixture.debugElement.query(By.css('#register-component-login-btn'));
+        expect(goToLoginBtn.attributes.routerLink).toBe('/login');
+    });
+
     it('should have app-footer element in template', () => {
         const appFooterEl = fixture.debugElement.query(By.css('app-footer'));
         expect(appFooterEl).toBeTruthy();
