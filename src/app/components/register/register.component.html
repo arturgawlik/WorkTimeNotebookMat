@@ -9,36 +9,26 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Email</mat-label>
                     <input matInput required type="email" formControlName="email">
-                    <mat-error *ngIf="registerForm.get('email').hasError('required')">Field email is required!
-                    </mat-error>
+                    <mat-error *ngIf="registerForm.get('email').hasError('required')">Field email is required!</mat-error>
                 </mat-form-field>
                 <ng-container formGroupName="passwords">
                     <mat-form-field appearance="standard">
                         <mat-label>Password</mat-label>
-                        <input matInput required type="password" formControlName="password" (input)="onPasswordInput()">
-                        <mat-error *ngIf="registerForm.get('passwords.password').hasError('required')">
-                            Field password is required!
-                        </mat-error>
-                        <mat-error *ngIf="registerForm.get('passwords.password').hasError('minlength')">
-                            Field password must have at least 6 characters length!
-                        </mat-error>
+                        <input matInput required type="password" formControlName="password">
+                        <mat-error *ngIf="registerForm.get('passwords.password').hasError('required')">Field password is required!</mat-error>
+                        <mat-error *ngIf="registerForm.get('passwords.password').hasError('minlength')">Field password must have at least 6 characters length!</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="standard">
                         <mat-label>Reapeat password</mat-label>
-                        <input matInput required type="password" formControlName="passwordRepeated" (input)="onPasswordInput()">
-                        <mat-error *ngIf="registerForm.get('passwords.passwordRepeated').hasError('passwordsEquality')">
-                            Password's must be equal!
-                        </mat-error>
-                        <mat-error *ngIf="registerForm.get('passwords.passwordRepeated').hasError('required')">
-                            Field Reapeat password is required!
-                        </mat-error>
+                        <input matInput required type="password" formControlName="passwordRepeated">
+                        <mat-error *ngIf="registerForm.get('passwords.passwordRepeated').hasError('passwordsEquality')">Password's must be equal!</mat-error>
                     </mat-form-field>
                 </ng-container>
             </form>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-stroked-button color="primary" (click)="registerBtnClick()">Register new account</button>
-            <button mat-stroked-button color="accent" routerLink="/login">or login to existing one</button>
+            <button mat-stroked-button color="primary" (click)="registerFormSubmit()" id="register-component-register-btn">Register new account</button>
+            <button mat-stroked-button color="accent" routerLink="/login" id="register-component-login-btn">or login to existing one</button>
         </mat-card-actions>
     </mat-card>
 </main>

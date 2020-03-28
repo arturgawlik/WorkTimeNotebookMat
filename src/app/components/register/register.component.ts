@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
       email: ['', [Validators.required]],
       passwords: this.fb.group({
         password: ['', [Validators.required, Validators.minLength(6)]],
-        passwordRepeated: ['', [Validators.required]]
+        passwordRepeated: ['']
       }, { validators: passwordsEquality })
     });
   }
@@ -39,30 +39,19 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       this.fetching.show();
       this.auth.createUserWithEmailAndPassword(this.registerForm.value.email, this.registerForm.value.passwords.password)
-      .then(r => {
-        console.log(r);
-        this.router.navigate(['/']);
-        this.fetching.hide();
-      })
-      .catch(err => {
-        console.log(err);
-        this.fetching.hide();
-        this.snackBar.open('Something goes wrong... :(');
-      })
+        .then(r => {
+          console.log(r);
+          this.router.navigate(['/']);
+          this.fetching.hide();
+        })
+        .catch(err => {
+          console.log(err);
+          this.fetching.hide();
+          this.snackBar.open('Something goes wrong... :(');
+        })
     } else {
       this.registerForm.markAllAsTouched();
     }
-  }
-
-  registerBtnClick() {
-    this.registerFormSubmit();
-  }
-
-  onPasswordInput() {
-    if (this.registerForm.get('passwords').hasError('passwordsEquality'))
-      this.registerForm.get('passwords.passwordRepeated').setErrors({'passwordsEquality': true});
-    else
-      this.registerForm.get('passwords.passwordRepeated').setErrors(null);
   }
 
 }
