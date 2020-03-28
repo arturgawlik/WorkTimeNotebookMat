@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { cold, getTestScheduler } from 'jasmine-marbles';
 import { of, Subject } from 'rxjs';
 import { FetchingService } from './services/fetching/fetching.service';
+import { AppModule } from './app.module';
 
 // TODO: For now I'm using real FetchingService instead of some spy - this should be changed.
 describe('AppComponent', () => {
@@ -20,7 +21,7 @@ describe('AppComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        AppModule
       ],
       declarations: [
         AppComponent

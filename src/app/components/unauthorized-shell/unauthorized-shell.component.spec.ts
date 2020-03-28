@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UnauthorizedShellComponent } from './unauthorized-shell.component';
+import { AppModule } from 'src/app/app.module';
 
 describe('UnauthorizedShellComponent', () => {
   let component: UnauthorizedShellComponent;
@@ -8,7 +9,9 @@ describe('UnauthorizedShellComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UnauthorizedShellComponent ]
+      imports: [
+        AppModule
+      ]
     })
     .compileComponents();
   }));
