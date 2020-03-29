@@ -7,11 +7,5 @@ import { Component, OnInit } from '@angular/core';
     <h2 class="app-footer-theme">Work time notebook</h2>
   `,
 })
-export class TopbarComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class TopbarComponent {
 }

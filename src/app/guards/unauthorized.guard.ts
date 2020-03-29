@@ -8,26 +8,26 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UnauthorizedGuard implements CanActivate {
-  
+
   constructor(private router: Router, private auth: AngularFireAuth) {
   }
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot): Observable<boolean> {
 
     return this.auth.user.pipe(
       map(u => {
-        if (!u) {
-          return true;
-        }
-        else {
+        if (u) {
           this.router.navigate(['/']);
           return false;
+        }
+        else {
+          return true;
         }
       })
     )
   }
 
-  
+
 }

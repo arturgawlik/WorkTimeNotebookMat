@@ -14,7 +14,7 @@ export class AuthorizedGuard implements CanActivate {
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot): Observable<boolean> {
 
     return this.auth.user.pipe(
       map(u => {
@@ -26,7 +26,7 @@ export class AuthorizedGuard implements CanActivate {
           return false;
         }
       })
-    )
+    );
   }
 
 }
