@@ -6,10 +6,16 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthorizedGuard } from './guards/authorized.guard';
 import { UnauthorizedGuard } from './guards/unauthorized.guard';
+import { HomeComponent } from './components/home/home.component';
 
 
 const routes: Routes = [
-  { path: '', component: AuthorizedShellComponent, canActivate: [AuthorizedGuard] },
+  {
+    path: '', component: AuthorizedShellComponent, children: [
+      { path: '', component: HomeComponent }
+    ],
+    canActivate: [AuthorizedGuard]
+  },
   {
     path: '', component: UnauthorizedShellComponent, children: [
       { path: 'login', component: LoginComponent },

@@ -5,24 +5,26 @@ import { FetchingService } from 'src/app/services/fetching/fetching.service';
 
 @Component({
   selector: 'app-authorized-shell',
-  templateUrl: './authorized-shell.component.html',
-  styleUrls: ['./authorized-shell.component.scss']
+  styleUrls: ['./authorized-shell.component.scss'],
+  template: `
+    <router-outlet></router-outlet>
+  `
 })
 export class AuthorizedShellComponent {
 
   constructor(private auth: AngularFireAuth, private router: Router, private fetching: FetchingService) {
   }
 
-  logout() {
-    this.fetching.show();
-    this.auth.signOut()
-      .then(r => {
-        this.router.navigate(['/login']);
-        this.fetching.hide();
-      })
-      .catch(err => {
-        this.fetching.hide();
-      })
-  }
+  // logout() {
+  //   this.fetching.show();
+  //   this.auth.signOut()
+  //     .then(r => {
+  //       this.router.navigate(['/login']);
+  //       this.fetching.hide();
+  //     })
+  //     .catch(err => {
+  //       this.fetching.hide();
+  //     })
+  // }
 
 }

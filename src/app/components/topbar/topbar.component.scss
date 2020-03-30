@@ -1,8 +1,12 @@
-
-:host {
-    text-align: center;
+mat-toolbar-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
 }
 
-h2 {
-    padding: 10px;
+.logo {
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 10px;
+    text-decoration: underline;
+    text-underline-offset: from-font;
+    user-select: none;
 }
