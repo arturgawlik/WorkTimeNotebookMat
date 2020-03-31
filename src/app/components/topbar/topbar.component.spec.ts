@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { TopbarComponent } from './topbar.component';
 import { By } from '@angular/platform-browser';
@@ -8,13 +8,13 @@ import { Router } from '@angular/router';
 import { FetchingService } from 'src/app/services/fetching/fetching.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFireAuthMock } from 'src/app/testing/angular-fire-auth.mock';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 
 describe('TopbarComponent', () => {
   let component: TopbarComponent;
   let fixture: ComponentFixture<TopbarComponent>;
 
-  let angularFireMock;
+  let angularFireAuthMock;
   let routerSpy;
   let fetchingServiceSpy;
   let matSnakBarSpy;
@@ -24,7 +24,7 @@ describe('TopbarComponent', () => {
     routerSpy = jasmine.createSpyObj('Router', ['navigate']);
     fetchingServiceSpy = jasmine.createSpyObj('FetchingService', ['show', 'hide']);
     matSnakBarSpy = jasmine.createSpyObj('MatSnackBar', ['open']);
-
+    
     TestBed.configureTestingModule({
       imports: [AppModule],
       providers: [
@@ -36,7 +36,7 @@ describe('TopbarComponent', () => {
     })
     .compileComponents();
 
-    angularFireMock = TestBed.inject(AngularFireAuth);
+    angularFireAuthMock = TestBed.inject(AngularFireAuth);
   }));
 
   beforeEach(() => {
@@ -55,23 +55,61 @@ describe('TopbarComponent', () => {
   });
 
   it('should not have container with proper elements if its not anthorized', () => {
-    spyOnProperty(angularFireMock, 'user', 'get').and.returnValue(of(null));
-    fixture.detectChanges(); // TODO: check why there is need to call detectChanges function
+    spyOnProperty(angularFireAuthMock, 'user', 'get').and.returnValue(of(null));
+    fixture.detectChanges();
     
     const elem = fixture.debugElement.query(By.css('#auth-con'));
     expect(elem).toBeFalsy();
   });
 
   it('should have container with proper elements if its anthorized', () => {
-    spyOnProperty(angularFireMock, 'user', 'get').and.returnValue(of({ username: 'test' }));
-    
     const authConElem = fixture.debugElement.query(By.css('#auth-con'));
     expect(authConElem).toBeTruthy();
     
     const logoutBtnElem = authConElem.query(By.css('a'));
     expect(logoutBtnElem).toBeTruthy();
-
-
   });
+
+  it('should call TopbarComponent.logout when click logout btn', () => {
+    spyOn(component, 'logout'); 
+    const logoutBtn = fixture.debugElement.query(By.css('#auth-con a'));
+    logoutBtn.triggerEventHandler('click', null);
+
+    expect(component.logout).toHaveBeenCalled();
+  });
+
+  it('should TopbarComponent.logout call AngularFireAuth.signOut', () => {
+    spyOn(angularFireAuthMock, 'signOut').and.returnValue(of(null).toPromise());
+    component.logout();
+    expect(angularFireAuthMock.signOut).toHaveBeenCalled();
+  });
+
+  it('should call FetchingService.show and then FetchingService.hide when TopbarComponent.logout is call when AngularFireAuth.auth resolve', fakeAsync(() => {
+    component.logout();
+    expect(fetchingServiceSpy.show).toHaveBeenCalled();
+    tick();
+    expect(fetchingServiceSpy.hide).toHaveBeenCalled();
+  }));
+
+  it('should call FetchingService.show and then FetchingService.hide when TopbarComponent.logout is call when AngularFireAuth.auth reject', fakeAsync(() => {
+    spyOn(angularFireAuthMock, 'signOut').and.returnValue(throwError(null).toPromise());
+    component.logout();
+    expect(fetchingServiceSpy.show).toHaveBeenCalled();
+    tick();
+    expect(fetchingServiceSpy.hide).toHaveBeenCalled();
+  }));
+
+  it('should call navigate to "/login" when AngularFireAuth.signOut resolve', fakeAsync(() => {
+    component.logout();
+    tick();
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['/login']);
+  }));
+
+  it('should open snackBar when AngularFireAuth.signOut reject', fakeAsync(() => {
+    spyOn(angularFireAuthMock, 'signOut').and.returnValue(throwError(null).toPromise());
+    component.logout();
+    tick();
+    expect(matSnakBarSpy.open).toHaveBeenCalledWith('Something goes wrong... :(');
+  }));
 
 });

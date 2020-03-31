@@ -36,7 +36,7 @@ export class TopbarComponent {
       .catch(err => {
         this.fetching.hide();
         this.snackBar.open('Something goes wrong... :(');
-      })
+      });
   }
 
 }

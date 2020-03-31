@@ -11,20 +11,4 @@ import { FetchingService } from 'src/app/services/fetching/fetching.service';
   `
 })
 export class AuthorizedShellComponent {
-
-  constructor(private auth: AngularFireAuth, private router: Router, private fetching: FetchingService) {
-  }
-
-  // logout() {
-  //   this.fetching.show();
-  //   this.auth.signOut()
-  //     .then(r => {
-  //       this.router.navigate(['/login']);
-  //       this.fetching.hide();
-  //     })
-  //     .catch(err => {
-  //       this.fetching.hide();
-  //     })
-  // }
-
 }
