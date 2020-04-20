@@ -24,6 +24,8 @@ import { FetchingService } from './services/fetching/fetching.service';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { HomeComponent } from './components/home/home.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { AddEditWorkTimeNoteEntityComponent } from './components/add-edit-work-time-note-entity/add-edit-work-time-note-entity.component';
+import { WorkTimeNoteListComponent } from './components/work-time-note-list/work-time-note-list.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     TopbarComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    AddEditWorkTimeNoteEntityComponent,
+    WorkTimeNoteListComponent
   ],
   imports: [
     BrowserModule,
