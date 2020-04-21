@@ -1,0 +1,25 @@
+:host {
+    display: grid;
+}
+
+mat-card {
+    display: grid;
+    align-items: end;
+}
+
+form {
+    display: grid;
+}
+
+mat-card-actions {
+    display: grid;
+    grid-template-columns: 2fr 1fr;;
+}
+
+.header {
+    text-align: center;
+    letter-spacing: 8px;
+    margin-bottom: 20px;
+    // text-decoration: underline;
+    text-transform: uppercase;
+}

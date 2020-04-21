@@ -1,1 +1,43 @@
-<p>add-edit-work-time-note-entity works!</p>
+<mat-card>
+    <!-- <mat-card-header> -->
+        <div class="header">note your work time</div>
+    <!-- </mat-card-header> -->
+    <mat-card-content>
+        <form autocomplete="off" [formGroup]="form">
+            <mat-form-field appearance="outline">
+                <mat-label>Type</mat-label>
+                <input matInput required formControlName="type">
+                <mat-error *ngIf="form.get('type').hasError('required')">Field email is required!</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Customer</mat-label>
+                <input matInput required formControlName="customer">
+                <!-- <mat-error>Field email is required!</mat-error> -->
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <input matInput required formControlName="description">
+                <!-- <mat-error>Field email is required!</mat-error> -->
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Url</mat-label>
+                <input matInput required formControlName="url">
+                <!-- <mat-error>Field email is required!</mat-error> -->
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Start date</mat-label>
+                <input matInput required formControlName="startDate">
+                <!-- <mat-error>Field email is required!</mat-error> -->
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>End date</mat-label>
+                <input matInput required formControlName="endDate">
+                <!-- <mat-error>Field email is required!</mat-error> -->
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-stroked-button color="primary">Save</button>
+        <button mat-stroked-button color="danger" (click)="initForm()">Cancel</button>
+    </mat-card-actions>
+</mat-card>

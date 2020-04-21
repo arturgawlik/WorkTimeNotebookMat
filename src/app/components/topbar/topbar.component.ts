@@ -10,7 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   template: `
     <mat-toolbar color="primary">
       <mat-toolbar-row>
-        <span class="logo">WTM</span>
+        <span class="logo"></span>
         <div></div>
         <div id="auth-con" *ngIf="auth.user | async">
           <a mat-button (click)="logout()">

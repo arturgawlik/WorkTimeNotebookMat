@@ -5,7 +5,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
   template: `
     <app-topbar></app-topbar>
-    <main></main>
+    <main>
+      <app-add-edit-work-time-note-entity></app-add-edit-work-time-note-entity>
+      <app-work-time-note-list></app-work-time-note-list>
+    </main>
     <app-footer></app-footer>
   `
 })

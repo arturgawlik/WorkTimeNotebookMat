@@ -5,3 +5,16 @@
     gap: 10px;
 }
 
+main {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+}
+
+app-add-edit-work-time-note-entity {
+    margin: 20px;
+}
+
+app-work-time-note-list {
+    margin: 20px;
+}
