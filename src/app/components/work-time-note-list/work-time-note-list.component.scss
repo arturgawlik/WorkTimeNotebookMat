@@ -1,3 +1,22 @@
 :host {
-    outline: 1px solid red;
+    // outline: 1px solid red;
+    overflow: scroll;
+    display: grid;
+    gap: 40px;
+}
+
+mat-card {
+    border-left: 3px solid #843939;
+    padding: 0;
+}
+
+mat-card-header {
+    border-bottom: 2px solid white;
+    padding: 20px 20px 0 20px;
+    letter-spacing: 8px;
+
+}
+
+mat-card-content {
+    padding: 20px;
 }
