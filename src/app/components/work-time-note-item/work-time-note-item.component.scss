@@ -1,0 +1,30 @@
+mat-card {
+    background-color: azure;
+    color: black;
+}
+
+mat-card:hover {
+    cursor: pointer;
+}
+
+.hours {
+    font-size: 18px;
+}
+
+.type {
+    font-size: 9px;
+    height: 11px;
+}
+
+.description {
+    margin-top: 5px;
+    font-size: 11px;
+}
+
+.url {
+    font-size: 9px;
+}
+
+small {
+    font-size: 9px;
+}

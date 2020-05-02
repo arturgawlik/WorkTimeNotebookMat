@@ -24,3 +24,44 @@ mat-card-actions {
     // text-decoration: underline;
     text-transform: uppercase;
 }
+
+.time-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+// mat-progress-bar {
+//     position: absolute;
+// }
+
+.laoding {
+    animation-name: loading-border;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes loading-border {
+    0% {
+        border: none;
+    }
+
+    25% {
+        border-top: 1px solid green;
+    }
+
+    50% {
+        border-top: 1px solid green;
+        border-right: 1px solid green;
+    }
+
+    75% {
+        border-top: 1px solid green;
+        border-right: 1px solid green;
+        border-bottom: 1px solid green;
+    }
+
+    100% {
+        border: 1px solid green;
+    }
+}

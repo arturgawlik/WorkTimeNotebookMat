@@ -27,6 +27,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { AddEditWorkTimeNoteEntityComponent } from './components/add-edit-work-time-note-entity/add-edit-work-time-note-entity.component';
 import { WorkTimeNoteListComponent } from './components/work-time-note-list/work-time-note-list.component';
 import { MatTableModule } from '@angular/material/table';
+import { WorkTimeNoteItemComponent } from './components/work-time-note-item/work-time-note-item.component';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import 'firebase/firestore';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import { MatTableModule } from '@angular/material/table';
     RegisterComponent,
     HomeComponent,
     AddEditWorkTimeNoteEntityComponent,
-    WorkTimeNoteListComponent
+    WorkTimeNoteListComponent,
+    WorkTimeNoteItemComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,8 @@ import { MatTableModule } from '@angular/material/table';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     MatSnackBarModule,
     MatToolbarModule,
-    MatTableModule
+    MatTableModule,
+    AngularFirestoreModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true },

@@ -1,43 +1,45 @@
 <mat-card>
     <!-- <mat-card-header> -->
-        <div class="header">note your work time</div>
+    <div class="header">note your work time</div>
     <!-- </mat-card-header> -->
     <mat-card-content>
         <form autocomplete="off" [formGroup]="form">
             <mat-form-field appearance="outline">
                 <mat-label>Type</mat-label>
                 <input matInput required formControlName="type">
-                <mat-error *ngIf="form.get('type').hasError('required')">Field email is required!</mat-error>
+                <mat-error *ngIf="formFileds.type.hasError('required')">Field type is required!</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Customer</mat-label>
                 <input matInput required formControlName="customer">
-                <!-- <mat-error>Field email is required!</mat-error> -->
+                <mat-error *ngIf="formFileds.customer.hasError('required')">Field customer is required!</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Description</mat-label>
                 <input matInput required formControlName="description">
-                <!-- <mat-error>Field email is required!</mat-error> -->
+                <mat-error *ngIf="formFileds.description.hasError('required')">Field description is required!</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Url</mat-label>
                 <input matInput required formControlName="url">
-                <!-- <mat-error>Field email is required!</mat-error> -->
+                <mat-error *ngIf="formFileds.url.hasError('required')">Field url is required!</mat-error>
             </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Start date</mat-label>
-                <input matInput required formControlName="startDate">
-                <!-- <mat-error>Field email is required!</mat-error> -->
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>End date</mat-label>
-                <input matInput required formControlName="endDate">
-                <!-- <mat-error>Field email is required!</mat-error> -->
-            </mat-form-field>
+            <div class="time-group">
+                <mat-form-field appearance="outline">
+                    <mat-label>Start date</mat-label>
+                    <input matInput required formControlName="startDate">
+                    <mat-error *ngIf="formFileds.startDate.hasError('required')">Field start date is required!</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>End date</mat-label>
+                    <input matInput required formControlName="endDate">
+                    <mat-error *ngIf="formFileds.endDate.hasError('required')">Field end date is required!</mat-error>
+                </mat-form-field>
+            </div>
         </form>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-stroked-button color="primary">Save</button>
-        <button mat-stroked-button color="danger" (click)="initForm()">Cancel</button>
+        <button mat-stroked-button color="primary" [disabled]="loading" (click)="submit()">Save</button>
+        <button mat-stroked-button [disabled]="loading" (click)="initForm()">Cancel</button>
     </mat-card-actions>
 </mat-card>

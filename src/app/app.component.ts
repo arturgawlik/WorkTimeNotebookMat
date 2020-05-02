@@ -6,7 +6,7 @@ import { FetchingService } from './services/fetching/fetching.service';
   styleUrls: ['./app.component.scss'],
   template: `
     <div *ngIf="isFetching">
-      <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </div>
     <router-outlet></router-outlet>
   `
