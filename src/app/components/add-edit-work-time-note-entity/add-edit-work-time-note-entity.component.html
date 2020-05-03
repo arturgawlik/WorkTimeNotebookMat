@@ -27,12 +27,12 @@
             <div class="time-group">
                 <mat-form-field appearance="outline">
                     <mat-label>Start date</mat-label>
-                    <input matInput required formControlName="startDate">
+                    <input pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$" matInput required formControlName="startDate">
                     <mat-error *ngIf="formFileds.startDate.hasError('required')">Field start date is required!</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>End date</mat-label>
-                    <input matInput required formControlName="endDate">
+                    <input pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$" matInput required formControlName="endDate">
                     <mat-error *ngIf="formFileds.endDate.hasError('required')">Field end date is required!</mat-error>
                 </mat-form-field>
             </div>

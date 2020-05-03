@@ -5,7 +5,7 @@ import { FetchingService } from 'src/app/services/fetching/fetching.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-topbar',
+  selector: 'app-nav-topbar',
   styleUrls: ['./topbar.component.scss'],
   template: `
     <mat-toolbar color="primary">

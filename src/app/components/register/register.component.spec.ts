@@ -54,8 +54,8 @@ describe('RegisterComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should have app-topbar element in template', () => {
-        const appTopbarEl = fixture.debugElement.query(By.css('app-topbar'));
+    it('should have app-nav-topbar element in template', () => {
+        const appTopbarEl = fixture.debugElement.query(By.css('app-nav-topbar'));
         expect(appTopbarEl).toBeTruthy();
     });
 

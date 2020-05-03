@@ -72,9 +72,9 @@ describe('LoginComponent', () => {
         expect(component.loginForm.get('password')).toBeTruthy('component.loginForm should have password');
     });
 
-    it('should have app-topbar', () => {
+    it('should have app-nav-topbar', () => {
         fixture.detectChanges();
-        const elem = fixture.debugElement.query(By.css('app-topbar'));
+        const elem = fixture.debugElement.query(By.css('app-nav-topbar'));
         expect(elem).toBeTruthy();
     });
 

@@ -50,21 +50,22 @@ export class AddEditWorkTimeNoteEntityComponent implements OnInit {
   }
 
   submit() {
-    // if (this.form.valid) {
-    //   const dto = new NoteDTO(this.form.value as NoteFormValue, this.userId);
-    //   console.log(dto);
-    //   this.notesCollection.add({...dto})
-    //     .then(r => {
-    //       console.log('success');
-    //     })
-    //     .catch(r => {
-    //       console.log('error');
-    //     });
-    // } else {
-    //   this.markAllFieldsAsTouched();
-    // }
-    this.toggleLoading(true);
-    setTimeout(() => this.toggleLoading(false), 5000);
+    if (this.form.valid) {
+      const dto = new NoteDTO(this.form.value as NoteFormValue, this.userId);
+      this.toggleLoading(true);
+      this.notesCollection.add({...dto})
+        .then(r => {
+          console.log('success');
+          this.toggleLoading(false);
+          this.initForm();
+        })
+        .catch(r => {
+          console.log('error');
+          this.toggleLoading(false);
+        });
+    } else {
+      this.markAllFieldsAsTouched();
+    }
   }
 
   markAllFieldsAsTouched() {

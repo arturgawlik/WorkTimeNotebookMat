@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-home',
   styleUrls: ['./home.component.scss'],
   template: `
-    <app-topbar></app-topbar>
+    <app-nav-topbar></app-nav-topbar>
     <main>
       <app-add-edit-work-time-note-entity></app-add-edit-work-time-note-entity>
       <app-work-time-note-list></app-work-time-note-list>
