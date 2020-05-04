@@ -5,6 +5,7 @@ import { Note, NoteDTO, NoteFormValue } from 'src/app/models/note';
 import { HIGH_CONTRAST_MODE_ACTIVE_CSS_CLASS } from '@angular/cdk/a11y/high-contrast-mode/high-contrast-mode-detector';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FetchingService } from 'src/app/services/fetching/fetching.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-edit-work-time-note-entity',
@@ -19,7 +20,7 @@ export class AddEditWorkTimeNoteEntityComponent implements OnInit {
   userId: string;
   loading = false;
 
-  constructor(private fb: FormBuilder, private firestore: AngularFirestore, private auth: AngularFireAuth, private fetchingService: FetchingService) {
+  constructor(private fb: FormBuilder, private firestore: AngularFirestore, private auth: AngularFireAuth, private fetchingService: FetchingService, private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -55,12 +56,11 @@ export class AddEditWorkTimeNoteEntityComponent implements OnInit {
       this.toggleLoading(true);
       this.notesCollection.add({...dto})
         .then(r => {
-          console.log('success');
           this.toggleLoading(false);
           this.initForm();
         })
         .catch(r => {
-          console.log('error');
+          this.snackBar.open('An error occurred while adding a new note!');
           this.toggleLoading(false);
         });
     } else {
