@@ -29,7 +29,9 @@ import { WorkTimeNoteListComponent } from './components/work-time-note-list/work
 import { MatTableModule } from '@angular/material/table';
 import { WorkTimeNoteItemComponent } from './components/work-time-note-item/work-time-note-item.component';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { NgxsModule } from '@ngxs/store';
 import 'firebase/firestore';
+
 
 @NgModule({
   declarations: [
@@ -61,7 +63,10 @@ import 'firebase/firestore';
     MatSnackBarModule,
     MatToolbarModule,
     MatTableModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    NgxsModule.forRoot([], {
+      developmentMode: !environment.production
+    })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true },

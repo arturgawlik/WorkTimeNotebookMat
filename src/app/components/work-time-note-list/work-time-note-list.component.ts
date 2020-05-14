@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-work-time-note-list',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkTimeNoteListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private angularFirestore: AngularFirestore) { }
 
   ngOnInit(): void {
   }

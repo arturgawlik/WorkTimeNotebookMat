@@ -6,6 +6,7 @@ import { HIGH_CONTRAST_MODE_ACTIVE_CSS_CLASS } from '@angular/cdk/a11y/high-cont
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FetchingService } from 'src/app/services/fetching/fetching.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-add-edit-work-time-note-entity',
@@ -20,7 +21,13 @@ export class AddEditWorkTimeNoteEntityComponent implements OnInit {
   userId: string;
   loading = false;
 
-  constructor(private fb: FormBuilder, private firestore: AngularFirestore, private auth: AngularFireAuth, private fetchingService: FetchingService, private snackBar: MatSnackBar) {
+  constructor(private fb: FormBuilder, 
+    private firestore: AngularFirestore, 
+    private auth: AngularFireAuth, 
+    private fetchingService: FetchingService, 
+    private snackBar: MatSnackBar,
+    private store: Store
+    ) {
   }
 
   ngOnInit() {
@@ -54,8 +61,9 @@ export class AddEditWorkTimeNoteEntityComponent implements OnInit {
     if (this.form.valid) {
       const dto = new NoteDTO(this.form.value as NoteFormValue, this.userId);
       this.toggleLoading(true);
-      this.notesCollection.add({...dto})
+      this.notesCollection.add({ ...dto })
         .then(r => {
+          
           this.toggleLoading(false);
           this.initForm();
         })
@@ -89,7 +97,7 @@ export class AddEditWorkTimeNoteEntityComponent implements OnInit {
   }
 
   toggleDisable(isLoading: boolean) {
-    
+
     if (isLoading) {
       this.formFileds.type.disable();
       this.formFileds.customer.disable();
