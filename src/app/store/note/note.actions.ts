@@ -7,3 +7,8 @@ export class AddNote {
     }
 
 }
+
+
+export class InitStateByServerData {
+    static readonly type = '[Note] Init state by server data'
+}

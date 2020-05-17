@@ -30,7 +30,9 @@ import { MatTableModule } from '@angular/material/table';
 import { WorkTimeNoteItemComponent } from './components/work-time-note-item/work-time-note-item.component';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { NgxsModule } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import 'firebase/firestore';
+import { NotesState } from './store/note/notes.state';
 
 
 @NgModule({
@@ -64,9 +66,10 @@ import 'firebase/firestore';
     MatToolbarModule,
     MatTableModule,
     AngularFirestoreModule,
-    NgxsModule.forRoot([], {
-      developmentMode: !environment.production
-    })
+    NgxsModule.forRoot([NotesState], {
+      developmentMode: !environment.production,
+    }),
+    NgxsReduxDevtoolsPluginModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true },

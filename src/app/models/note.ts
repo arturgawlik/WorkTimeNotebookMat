@@ -31,7 +31,7 @@ export class NoteDTO implements Note {
     }
 
     private getFullDateFromTimeString(strDate: string) {
-        return DateTime.local().set({ hour: +strDate.split(':')[0], minute: +strDate.split(':')[1], second: 0, millisecond: 0}).toString()
+        return DateTime.local().set({ hour: +strDate.split(':')[0], minute: +strDate.split(':')[1], second: 0, millisecond: 0}).toISO();
     }
 
 }

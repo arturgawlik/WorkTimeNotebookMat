@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { WorkTimeItemDisplayModel } from '../work-time-note-list/display.model';
 
 @Component({
   selector: 'app-work-time-note-item',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkTimeNoteItemComponent implements OnInit {
 
+  @Input() item: WorkTimeItemDisplayModel;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  openUrl() {
+    window.open(this.item.url, '_blank');
   }
 
 }

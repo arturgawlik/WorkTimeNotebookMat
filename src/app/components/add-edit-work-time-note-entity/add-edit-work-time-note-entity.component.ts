@@ -7,6 +7,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { FetchingService } from 'src/app/services/fetching/fetching.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngxs/store';
+import { AddNote } from 'src/app/store/note/note.actions';
 
 @Component({
   selector: 'app-add-edit-work-time-note-entity',
@@ -63,7 +64,7 @@ export class AddEditWorkTimeNoteEntityComponent implements OnInit {
       this.toggleLoading(true);
       this.notesCollection.add({ ...dto })
         .then(r => {
-          
+          this.store.dispatch(new AddNote(dto));
           this.toggleLoading(false);
           this.initForm();
         })

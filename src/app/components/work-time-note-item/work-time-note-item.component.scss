@@ -19,6 +19,7 @@ mat-card:hover {
 .description {
     margin-top: 5px;
     font-size: 11px;
+    line-height: 12px;
 }
 
 .url {
@@ -27,4 +28,10 @@ mat-card:hover {
 
 small {
     font-size: 9px;
+}
+
+.dots {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-x: hidden;
 }
