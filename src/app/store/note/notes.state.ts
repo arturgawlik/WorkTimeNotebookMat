@@ -18,7 +18,7 @@ export interface NotesStateModel {
     },
 })
 @Injectable()
-export class NotesState implements NgxsOnInit {
+export class NotesState {
 
     constructor(private firestore: AngularFirestore, private auth: AngularFireAuth) {
     }
@@ -53,11 +53,6 @@ export class NotesState implements NgxsOnInit {
                 })
             })
         );
-    }
-
-
-    ngxsOnInit(ctx: StateContext<NotesStateModel>) {
-        ctx.dispatch(new InitStateByServerData());
     }
 
 }

@@ -23,11 +23,11 @@ export class WorkTimeNoteDisplayModel {
 
             groupedByDate.forEach((val, key) => {
                 const dayName = key;
-                const items = [];
+                let items = [];
                 val.forEach((v) => {
                     items.push({
-                        startHour: DateTime.fromISO(v.startDate).toLocaleString(DateTime.TIME_SIMPLE),
-                        endHour: DateTime.fromISO(v.endDate).toLocaleString(DateTime.TIME_SIMPLE),
+                        startHour: DateTime.fromISO(v.startDate).toLocaleString({ hour: '2-digit', minute: '2-digit', hour12: false }),
+                        endHour: DateTime.fromISO(v.endDate).toLocaleString({ hour: '2-digit', minute: '2-digit', hour12: false }),
                         durationTimeInMinutes: DateTime.fromISO(v.endDate).diff(DateTime.fromISO(v.startDate), 'minutes').minutes,
                         type: v.type,
                         customer: v.customer,
@@ -35,6 +35,7 @@ export class WorkTimeNoteDisplayModel {
                         description: v.description
                     });
                 });
+                items = items.sort((a, b) => +a.startHour.replace(':', '') - +b.startHour.replace(':', ''));
                 this.days.push({ dayName, items });
             });
         }
