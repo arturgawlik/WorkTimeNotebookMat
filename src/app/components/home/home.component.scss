@@ -12,6 +12,15 @@ main {
     height: calc(100vh - 100px - 40px);
     overflow-y: scroll;
     justify-self: center;
+
+    // no scrollbar visible
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+// no scrollbar visible
+main::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
 }
 
 app-add-edit-work-time-note-entity {

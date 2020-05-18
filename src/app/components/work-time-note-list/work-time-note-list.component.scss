@@ -4,6 +4,16 @@
     display: grid;
     gap: 40px;
     // height: 100%;
+    align-items: start;
+
+    // no scrollbar visible
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+// no scrollbar visible
+:host::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
 }
 
 mat-card {
