@@ -66,7 +66,7 @@ export class AddEditWorkTimeNoteEntityComponent implements OnInit {
         .then(r => {
           this.store.dispatch(new AddNote(dto));
           this.toggleLoading(false);
-          // this.initForm();
+          this.initForm();
         })
         .catch(r => {
           this.snackBar.open('An error occurred while adding a new note!');

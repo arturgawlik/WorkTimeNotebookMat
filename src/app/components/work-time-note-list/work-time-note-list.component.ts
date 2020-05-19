@@ -18,10 +18,10 @@ export class WorkTimeNoteListComponent  {
   notesDisplayModel$: Observable<WorkTimeNoteDisplayModel>;
 
   constructor(private store: Store) {
-    store.dispatch(new InitStateByServerData());
     this.notesDisplayModel$ = this.notes$.pipe(
       map(i => new WorkTimeNoteDisplayModel(i))
     );
+    store.dispatch(new InitStateByServerData());
   }
 
 }

@@ -10,47 +10,70 @@ export class WorkTimeNoteDisplayModel {
         if (notes && notes.length) {
             this.hasData = true;
 
-            const groupedByDate = new Map<string, Note[]>();
-            notes.forEach(elem => {
-                const itemDateTime = DateTime.fromISO(elem.startDate).toLocaleString(DateTime.DATE_SHORT);
-                const collection = groupedByDate.get(itemDateTime);
-                if (!collection) {
-                    groupedByDate.set(itemDateTime, [elem]);
+            notes.forEach(note => {
+                const firstStartDateTime = DateTime.fromISO(note.startDate);
+                const dayName = this.getDayName(note.startDate);
+                const workTimeItemDisplayModel = {
+                    startDateTime: DateTime.fromISO(note.startDate),
+                    startHour: this.getHour(note.startDate),
+                    endHour: this.getHour(note.endDate),
+                    durationTimeInMinutes: this.getDiffInMinutes(note.startDate, note.endDate),
+                    type: note.type,
+                    customer: note.customer,
+                    url: note.url,
+                    description: note.description
+                };
+
+                const workTimeNoteDayDisplayModel = this.days.filter(x => x.dayName === dayName)[0];
+                if (workTimeNoteDayDisplayModel) {
+                    // insert element on right place to avoid sorting
+                    const index = workTimeNoteDayDisplayModel.items.findIndex(x => x.startDateTime > workTimeItemDisplayModel.startDateTime);
+                    if (index === -1)
+                        workTimeNoteDayDisplayModel.items.push(workTimeItemDisplayModel);
+                    else
+                        workTimeNoteDayDisplayModel.items.splice(index, 0, workTimeItemDisplayModel);
                 } else {
-                    collection.push(elem);
+                    const day = {
+                        firstStartDateTime,
+                        dayName,
+                        items: [workTimeItemDisplayModel]
+                    };
+                    // insert element on right place to avoid sorting
+                    const index = this.days.findIndex(x => x.firstStartDateTime < firstStartDateTime);
+                    if (index === -1)
+                        this.days.push(day);
+                    else
+                        this.days.splice(index, 0, day);
                 }
             });
 
-            groupedByDate.forEach((val, key) => {
-                const dayName = key;
-                let items = [];
-                val.forEach((v) => {
-                    items.push({
-                        startHour: DateTime.fromISO(v.startDate).toLocaleString({ hour: '2-digit', minute: '2-digit', hour12: false }),
-                        endHour: DateTime.fromISO(v.endDate).toLocaleString({ hour: '2-digit', minute: '2-digit', hour12: false }),
-                        durationTimeInMinutes: DateTime.fromISO(v.endDate).diff(DateTime.fromISO(v.startDate), 'minutes').minutes,
-                        type: v.type,
-                        customer: v.customer,
-                        url: v.url,
-                        description: v.description
-                    });
-                });
-                items = items.sort((a, b) => +a.startHour.replace(':', '') - +b.startHour.replace(':', ''));
-                this.days.push({ dayName, items });
-            });
         }
+    }
+
+    private getDiffInMinutes(isoDateTime1: string, isoDateTime2: string) {
+        return DateTime.fromISO(isoDateTime2).diff(DateTime.fromISO(isoDateTime1), 'minutes').minutes;
+    }
+
+    private getHour(isoDateTime: string) {
+        return DateTime.fromISO(isoDateTime).toLocaleString({ hour: '2-digit', minute: '2-digit', hour12: false });
+    }
+
+    private getDayName(isoDateTime: string) {
+        return DateTime.fromISO(isoDateTime).toLocaleString(DateTime.DATE_SHORT) + '(' + DateTime.fromISO(isoDateTime).weekdayShort + ')';
     }
 }
 
 export interface WorkTimeNoteDayDisplayModel {
+    firstStartDateTime: DateTime;
     dayName: string;
     items: WorkTimeItemDisplayModel[];
 }
 
 export interface WorkTimeItemDisplayModel {
+    startDateTime: DateTime;
     startHour: string;
     endHour: string;
-    durationTimeInMinutes: string;
+    durationTimeInMinutes: number;
     type: string;
     customer: string;
     url: string;
