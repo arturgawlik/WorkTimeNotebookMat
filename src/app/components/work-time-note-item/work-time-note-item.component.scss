@@ -40,3 +40,35 @@ small {
     white-space: nowrap;
     overflow-x: hidden;
 }
+
+.copy {
+    position: absolute;
+    right: 10px;
+    opacity: 0.3;
+    cursor: pointer;
+    user-select: none;
+}
+
+.copy:active {
+    transform: translate(1px, 1px);
+}
+
+.copy-icon {
+    font-size: 14px;
+}
+
+.copy:hover {
+    .copy-icon {
+        font-size: 18px;
+    }
+}
+
+.copy:hover {
+    opacity: 1;
+}
+
+::ng-deep .tooltip {
+    position: relative;
+    top: 10px;
+    padding: 0;
+}

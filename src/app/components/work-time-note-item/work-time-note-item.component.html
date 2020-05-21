@@ -1,6 +1,8 @@
 <mat-card>
     <mat-card-content>
-        <div class="hours">{{item.startHour}} - {{item.endHour}} <small>({{item.durationTimeInMinutes}} min)</small></div>
+        <a (click)="copyBtnClick()" matTooltip="Copy!" matTooltipClass="tooltip" matTooltipPosition="above" class="copy"><span class="copy-icon material-icons">file_copy</span></a>
+        <div class="hours">{{item.startHour}} - {{item.endHour}} <small>({{item.durationTimeInMinutes}} min)</small>
+        </div>
         <div class="type">{{item.type}}, {{item.customer}}</div>
         <div (click)="openUrl()" class="url dots">{{item.url}}</div>
         <div class="description">{{item.description}}</div>

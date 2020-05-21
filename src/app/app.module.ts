@@ -32,8 +32,10 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import 'firebase/firestore';
-import { NotesState } from './store/note/notes.state';
+import { NotesState } from './store/noteList/notes.state';
 import { WorkTimeNoteListSkeletonComponent } from './components/work-time-note-list/skeleton/work-time-note-list-skeleton.component';
+import { NoteFormState } from './store/noteForm/note-form.state';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -68,7 +70,8 @@ import { WorkTimeNoteListSkeletonComponent } from './components/work-time-note-l
     MatToolbarModule,
     MatTableModule,
     AngularFirestoreModule,
-    NgxsModule.forRoot([NotesState], {
+    MatTooltipModule,
+    NgxsModule.forRoot([NotesState, NoteFormState], {
       developmentMode: !environment.production,
     }),
     NgxsReduxDevtoolsPluginModule.forRoot()

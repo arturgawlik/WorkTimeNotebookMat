@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { FetchingService } from 'src/app/services/fetching/fetching.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngxs/store';
-import { ClearNotes } from 'src/app/store/note/note.actions';
+import { ClearNotes } from 'src/app/store/noteList/note.actions';
 
 @Component({
   selector: 'app-nav-topbar',

@@ -7,7 +7,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { FetchingService } from 'src/app/services/fetching/fetching.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngxs/store';
-import { AddNote } from 'src/app/store/note/note.actions';
+import { AddNote } from 'src/app/store/noteList/note.actions';
+import { NoteFormState } from 'src/app/store/noteForm/note-form.state';
 
 @Component({
   selector: 'app-add-edit-work-time-note-entity',
@@ -22,19 +23,23 @@ export class AddEditWorkTimeNoteEntityComponent implements OnInit {
   userId: string;
   loading = false;
 
-  constructor(private fb: FormBuilder, 
-    private firestore: AngularFirestore, 
-    private auth: AngularFireAuth, 
-    private fetchingService: FetchingService, 
+  constructor(private fb: FormBuilder,
+    private firestore: AngularFirestore,
+    private auth: AngularFireAuth,
+    private fetchingService: FetchingService,
     private snackBar: MatSnackBar,
     private store: Store
-    ) {
+  ) {
   }
 
   ngOnInit() {
     this.initForm();
     this.notesCollection = this.firestore.collection<Note>('/notes');
     this.auth.user.subscribe(u => this.userId = u.uid);
+    this.store.select(NoteFormState.noteForm).subscribe(x => {
+      if (x)
+        this.form.setValue({...x, id: ''})
+    });
   }
 
   initForm() {

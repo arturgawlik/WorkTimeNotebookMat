@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
-import { NotesState, NotesStateModel } from 'src/app/store/note/notes.state';
+import { NotesState, NotesStateModel } from 'src/app/store/noteList/notes.state';
 import { Note } from 'src/app/models/note';
 import { WorkTimeNoteDisplayModel } from './display.model';
 import { map } from 'rxjs/operators';
-import { InitStateByServerData } from 'src/app/store/note/note.actions';
+import { InitStateByServerData } from 'src/app/store/noteList/note.actions';
 
 @Component({
   selector: 'app-work-time-note-list',
