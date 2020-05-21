@@ -3,6 +3,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { FetchingService } from 'src/app/services/fetching/fetching.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Store } from '@ngxs/store';
+import { ClearNotes } from 'src/app/store/note/note.actions';
 
 @Component({
   selector: 'app-nav-topbar',
@@ -23,7 +25,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class TopbarComponent {
 
-  constructor(public auth: AngularFireAuth, private router: Router, private fetching: FetchingService, private snackBar: MatSnackBar) {
+  constructor(public auth: AngularFireAuth, private router: Router, private fetching: FetchingService, private snackBar: MatSnackBar, private store: Store) {
   }
 
   logout() {
@@ -32,6 +34,7 @@ export class TopbarComponent {
       .then(r => {
         this.router.navigate(['/login']);
         this.fetching.hide();
+        this.store.dispatch(new ClearNotes());
       })
       .catch(err => {
         this.fetching.hide();

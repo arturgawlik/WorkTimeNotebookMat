@@ -5,10 +5,13 @@ export class AddNote {
 
     constructor(public note: Note) {
     }
-
 }
 
 
 export class InitStateByServerData {
     static readonly type = '[Note] Init state by server data'
+}
+
+export class ClearNotes {
+    static readonly type = '[Note] Clear notes'
 }

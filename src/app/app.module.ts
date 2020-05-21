@@ -33,6 +33,7 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import 'firebase/firestore';
 import { NotesState } from './store/note/notes.state';
+import { WorkTimeNoteListSkeletonComponent } from './components/work-time-note-list/skeleton/work-time-note-list-skeleton.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { NotesState } from './store/note/notes.state';
     HomeComponent,
     AddEditWorkTimeNoteEntityComponent,
     WorkTimeNoteListComponent,
-    WorkTimeNoteItemComponent
+    WorkTimeNoteItemComponent,
+    WorkTimeNoteListSkeletonComponent
   ],
   imports: [
     BrowserModule,

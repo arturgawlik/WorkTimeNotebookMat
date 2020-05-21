@@ -1,8 +1,8 @@
-<mat-card (click)="openUrl()">
+<mat-card>
     <mat-card-content>
         <div class="hours">{{item.startHour}} - {{item.endHour}} <small>({{item.durationTimeInMinutes}} min)</small></div>
         <div class="type">{{item.type}}, {{item.customer}}</div>
-        <div class="url dots">{{item.url}}</div>
+        <div (click)="openUrl()" class="url dots">{{item.url}}</div>
         <div class="description">{{item.description}}</div>
     </mat-card-content>
 </mat-card>

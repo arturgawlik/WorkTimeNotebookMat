@@ -7,13 +7,13 @@
     align-items: start;
 
     // no scrollbar visible
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
 }
 
 // no scrollbar visible
-:host::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
+:host::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
 }
 
 mat-card {
@@ -26,7 +26,6 @@ mat-card-header {
     border-bottom: 2px solid white;
     padding: 20px 20px 0 20px;
     letter-spacing: 8px;
-
 }
 
 mat-card-content {

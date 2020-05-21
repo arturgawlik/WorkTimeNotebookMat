@@ -1,6 +1,6 @@
 import { State, Action, StateContext, Selector, NgxsOnInit } from '@ngxs/store';
 import { Note } from 'src/app/models/note';
-import { AddNote, InitStateByServerData } from './note.actions';
+import { AddNote, InitStateByServerData, ClearNotes } from './note.actions';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { map, switchMap, mergeMap, tap, first } from 'rxjs/operators';
@@ -53,6 +53,14 @@ export class NotesState {
                 })
             })
         );
+    }
+
+    @Action(ClearNotes)
+    clearNotes(ctx: StateContext<NotesStateModel>) {
+        ctx.setState({
+            notes: [
+            ]
+        });
     }
 
 }
