@@ -1,6 +1,7 @@
-<app-work-time-note-list-skeleton *ngIf="!(notesDisplayModel$ | async) || !(notesDisplayModel$ | async).hasData"></app-work-time-note-list-skeleton>
+<app-work-time-note-list-skeleton *ngIf="!(notesDisplayModel$ | async) || !(notesDisplayModel$ | async).hasData">
+</app-work-time-note-list-skeleton>
 
-<ng-container *ngIf="(notesDisplayModel$ | async) && (notesDisplayModel$ | async).hasData">
+<ng-container #container *ngIf="(notesDisplayModel$ | async) && (notesDisplayModel$ | async).hasData">
     <ng-container *ngFor="let day of (notesDisplayModel$ | async).days">
         <mat-card>
             <mat-card-header>
@@ -12,3 +13,8 @@
         </mat-card>
     </ng-container>
 </ng-container>
+<a (click)="scrollToTop()" [style.opacity]="scrollBtnOpacity"  class="scroll-top">
+    <span class="material-icons">
+        keyboard_arrow_up
+    </span>
+</a>
