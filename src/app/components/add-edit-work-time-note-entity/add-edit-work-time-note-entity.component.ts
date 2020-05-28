@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngxs/store';
 import { AddNote } from 'src/app/store/noteList/note.actions';
 import { NoteFormState } from 'src/app/store/noteForm/note-form.state';
+import { map, mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-edit-work-time-note-entity',

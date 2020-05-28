@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NotesBackendServiceService } from './notes-backend-service.service';
+import { NotesBackendService } from './notes-backend-service.service';
 
 describe('NotesBackendServiceService', () => {
-  let service: NotesBackendServiceService;
+  let service: NotesBackendService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(NotesBackendServiceService);
+    service = TestBed.inject(NotesBackendService);
   });
 
   it('should be created', () => {

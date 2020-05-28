@@ -36,6 +36,7 @@ import { NotesState } from './store/noteList/notes.state';
 import { WorkTimeNoteListSkeletonComponent } from './components/work-time-note-list/skeleton/work-time-note-list-skeleton.component';
 import { NoteFormState } from './store/noteForm/note-form.state';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { NotesBackendService } from './services/noteBacked/notes-backend-service.service';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true },
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
-    FetchingService
+    FetchingService,
+    NotesBackendService
   ],
   bootstrap: [AppComponent]
 })

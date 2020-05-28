@@ -43,7 +43,8 @@ export class NotesState {
     @Action(InitStateByServerData)
     initStateByServerData(ctx: StateContext<NotesStateModel>) {
         const notesBackendCollection = this.auth.user.pipe(
-            mergeMap(u => this.firestore.collection<Note>('/notes', ref => ref.where('userId', '==', u.uid)).valueChanges()),
+            mergeMap(u => this.firestore.collection<Note>('/notes', ref => ref.where('userId', '==', u.uid)).snapshotChanges([])),
+            map(actions => actions.map(a => a.payload.doc.data())),
             first()
         );
         return notesBackendCollection.pipe(
